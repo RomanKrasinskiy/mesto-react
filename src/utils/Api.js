@@ -18,7 +18,7 @@ class Api {
     }).then(this._chechResponse);
   }
 
-  editProfile(inputValues) {
+  setUserInfo(inputValues) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -47,16 +47,9 @@ class Api {
     }).then(this._chechResponse);
   }
 
-  addLike(cardId) {
+  changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then(this._chechResponse);
-  }
-
-  delLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: isLiked ? "PUT" : "DELETE",
       headers: this._headers,
     }).then(this._chechResponse);
   }
