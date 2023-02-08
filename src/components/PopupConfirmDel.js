@@ -1,12 +1,12 @@
 import PopupWithForm from "./PopupWithForm";
 
-function PopupConfirmDel(props) {
+function PopupConfirmDel({isOpen, onClose}) {
   return (
     <PopupWithForm
       name="askDel"
       title="Вы уверены?"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       buttonText="Да"
     ></PopupWithForm>
   );

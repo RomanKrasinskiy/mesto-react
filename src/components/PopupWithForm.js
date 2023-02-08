@@ -1,42 +1,42 @@
 import React from "react";
 import CloseIcon from "../images/CloseIcon.svg";
 
-function PopupWithForm(props) {
+function PopupWithForm({name, isOpen, onClose, onSubmit, title, children, buttonText}) {
   return (
     <div
-      className={`popup popup_type_${props.name} ${
-        props.isOpen ? "popup_active" : ""
+      className={`popup popup_type_${name} ${
+        isOpen ? "popup_active" : ""
       }`}
     >
       <section className="popup__container popup__container-close">
         <button
           type="button"
           className="popup__close-button"
-          onClick={props.onClose}
+          onClick={onClose}
         >
           <img
             className="popup__close-ico"
             src={CloseIcon}
             alt="Закрыть"
-            onClick={props.onClose}
+            onClick={onClose}
           />
         </button>
         <form
-          name={`${props.name}`}
-          className={`popup__form popup__form_type_${props.name}`}
-          onSubmit={props.onSubmit}
+          name={`${name}`}
+          className={`popup__form popup__form_type_${name}`}
+          onSubmit={onSubmit}
           noValidate
         >
-          <h3 className={`popup__title popup__title_${props.name}`}>
-            {props.title}
+          <h3 className={`popup__title popup__title_${name}`}>
+            {title}
           </h3>
-          {props.children}
+          {children}
           <button
             className="popup__save-button"
             type="submit"
-            value={props.buttonText}
+            value={buttonText}
           >
-            {props.buttonText}
+            {buttonText}
           </button>
         </form>
       </section>

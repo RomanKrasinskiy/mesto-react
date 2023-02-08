@@ -2,25 +2,25 @@ import del from "../images/del.png";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-function Card(props) {
+function Card({ card, onCardClick, onCardLike, onCardDelete}) {
   const currentUser = useContext(CurrentUserContext);
 
   function handleClick() {
-    props.onCardClick(props.card);
+    onCardClick(card);
   }
 
   function handleLikeClick() {
-    props.onCardLike(props.card);
+    onCardLike(card);
   }
 
   function handleDeleteClick() {
-    props.onCardDelete(props.card);
+    onCardDelete(card);
   }
 
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = card.owner._id === currentUser._id;
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `element__like ${
     isLiked && "element__like_active"
@@ -36,25 +36,26 @@ function Card(props) {
             type="button"
             aria-label="Удалить"
           >
-            <img className="element__delete-ico" src={del} />
+            <img className="element__delete-ico" src={del} alt="Закрыть" />
           </button>
         )}
 
         <img
           className="element__photo"
-          src={props.card.link}
+          src={card.link}
           onClick={handleClick}
+          alt={card.name}
         />
         <div className="element__place">
-          <h2 className="element__name">{props.card.name}</h2>
+          <h2 className="element__name">{card.name}</h2>
           <div className="element__placeLike">
             <button
               className={cardLikeButtonClassName}
               onClick={handleLikeClick}
-              type="button"
-            ></button>
+              type="button">
+            </button>
 
-            <span className="element__numLike">{props.card.likes.length}</span>
+            <span className="element__numLike">{card.likes.length}</span>
           </div>
         </div>
       </div>

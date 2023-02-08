@@ -1,18 +1,18 @@
 import React from "react";
 import CloseIcon from "../images/CloseIcon.svg";
 
-function ImagePopup(props) {
+function ImagePopup({ isOpen, onClose, card }) {
   return (
     <div
       className={`popup popup_type_zoom-img ${
-        props.isOpen ? "popup_active" : ""
+        isOpen ? "popup_active" : ""
       }`}
     >
       <section className="popup__zoom-container popup__container-close">
         <button type="button" className="popup__close-button">
           <img
             className="popup__close-ico"
-            onClick={props.onClose}
+            onClick={onClose}
             src={CloseIcon}
             alt="Закрыть"
           />
@@ -20,11 +20,11 @@ function ImagePopup(props) {
         <figure className="popup__zoom-container">
           <img
             className="popup__zoom-main-img"
-            alt="Картинка карточки"
-            src={props.card ? props.card.link : ""}
+            alt={card ? `Прекрастное место под названием ${card.name}` : ""}
+            src={card ? card.link : ""}
           />
           <figcaption className="popup__zoom-caption">
-            {props.card ? props.card.name : ""}
+            {card ? card.name : ""}
           </figcaption>
         </figure>
       </section>

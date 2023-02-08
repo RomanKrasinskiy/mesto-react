@@ -105,7 +105,7 @@ function App() {
     api
       .setUserInfo(userInfo)
       .then((info) => setCurrentUser(info))
-      .then(closeAllPopups())
+      .then(() => closeAllPopups())
       .catch((err) => console.log(`Ошибка: ${err}`));
   }
 
@@ -114,7 +114,7 @@ function App() {
       .addCard(card)
       .then(console.log(card))
       .then((data) => setCards([data, ...cards]))
-      .then(closeAllPopups())
+      .then(() => closeAllPopups())
 
       .catch((err) => console.log(err));
   }
